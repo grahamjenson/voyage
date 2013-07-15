@@ -1,0 +1,2 @@
+web: nodemon dist/router.js
+grunt: grunt watch
