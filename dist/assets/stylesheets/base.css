@@ -4863,10 +4863,23 @@ a.label:hover, a.label:focus, a.badge:hover, a.badge:focus {
 canvas {
   display: none; }
 
+.hero {
+  height: 150px;
+  top: 25%;
+  position: absolute;
+  z-index: 10;
+  width: 100%;
+  background: rgba(0, 255, 0, 0.2);
+  text-align: center; }
+  .hero .inner {
+    position: relative;
+    top: 25px; }
+
 #container {
   width: 50%;
   margin: 0 auto; }
   #container .block {
     position: absolute;
     margin: 0px;
-    padding: 0px; }
+    padding: 0px;
+    opacity: 0.3; }

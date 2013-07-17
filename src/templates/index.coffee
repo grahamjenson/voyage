@@ -1,5 +1,5 @@
 ###### module
-files = ['layout','body', 'javascripts', 'stylesheets', 'templates']
+files = ['layout', 'body', 'javascripts', 'stylesheets', 'templates']
 for f in files
   tem = require "./" + f
   if tem.t

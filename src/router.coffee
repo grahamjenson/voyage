@@ -11,6 +11,8 @@
 ################################################
 
 express = require("express")
+util = require('util')
+twitter = require('twit')
 templates = require './templates'
 
 
@@ -35,6 +37,22 @@ app.get('/', (request, response) ->
   response.send(templates.layout(body: templates.body, javascripts: js, stylesheets: ss, templates: temp))
 )
 
+
+
+app.get('/tweets', (req,res) ->
+  twit_oauth = {
+    consumer_key: process.env.consumer_key
+    consumer_secret: process.env.consumer_secret
+    access_token: process.env.access_key
+    access_token_secret: process.env.access_secret
+  }
+
+  twit = new twitter(twit_oauth)
+  twit.get('search/tweets', { q: 'ba', count: 10 }, (err, data) ->
+    console.log(util.inspect(data))
+    res.send(JSON.stringify([err,data]))
+  )
+)
 
 port = process.env.PORT || 3000
 app.listen(port, ->
