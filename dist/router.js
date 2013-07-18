@@ -58,11 +58,15 @@
     };
     twit = new twitter(twit_oauth);
     return twit.get('search/tweets', {
-      q: 'ba',
-      count: 10
+      q: 'digitalnz',
+      geocode: "-41.2889,174.7772,500km",
+      count: 5
     }, function(err, data) {
-      console.log(util.inspect(data));
-      return res.send(JSON.stringify([err, data]));
+      if (err) {
+        return res.writeHead(500, err.message);
+      } else {
+        return res.json(data);
+      }
     });
   });
 

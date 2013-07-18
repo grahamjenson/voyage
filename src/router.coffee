@@ -46,11 +46,14 @@ app.get('/tweets', (req,res) ->
     access_token: process.env.access_key
     access_token_secret: process.env.access_secret
   }
-
+  
   twit = new twitter(twit_oauth)
-  twit.get('search/tweets', { q: 'ba', count: 10 }, (err, data) ->
-    console.log(util.inspect(data))
-    res.send(JSON.stringify([err,data]))
+
+  twit.get('search/tweets', { q: 'digitalnz', geocode: "-41.2889,174.7772,500km", count: 5 }, (err, data) ->
+    if (err) 
+      res.writeHead(500, err.message)
+    else
+      res.json(data)
   )
 )
 
